@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفيق الدراسة - النظام المتكامل 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-dark: #1a237e;
+            --primary: #283593;
+            --primary-light: #3949ab;
+            --secondary: #00acc1;
+            --secondary-light: #26c6da;
+            --accent: #ff4081;
+            --accent-light: #ff79b0;
+            --light: #f5f7ff;
+            --light-gray: #e8eaf6;
+            --medium-gray: #b0bec5;
+            --dark: #0d1b2a;
+            --success: #00c853;
+            --warning: #ff9100;
+            --danger: #f44336;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7ff 0%, #e3f2fd 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2300acc1' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+            transform: rotate(5deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, var(--secondary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #bbdefb;
+        }
+        
+        /* نظام تسجيل الدخول */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .auth-input {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        
+        .auth-input:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+        
+        .auth-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .user-info-bar {
+            background: linear-gradient(135deg, var(--success), #64dd17);
+            color: white;
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        nav {
+            background: white;
+            padding: 0.8rem 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .nav-item {
+            margin: 0 0.5rem;
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+            border: 2px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 1rem;
+        }
+        
+        .card-title i {
+            margin-left: 0.8rem;
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+        
+        /* جدول المذاكرة الشخصي */
+        .study-schedule {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .schedule-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* الاختبارات التفاعلية */
+        .quiz-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .option {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .option:hover {
+            background: var(--secondary-light);
+            color: white;
+        }
+        
+        .quiz-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        /* الإشعارات الفورية */
+        .live-notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--success), #64dd17);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            z-index: 1500;
+            display: none;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .subject-header {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard, .subjects-grid { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; align-items: center; }
+            .nav-item { width: 100%; text-align: center; justify-content: center; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- نظام تسجيل الدخول -->
+<div id="authOverlay" class="auth-overlay">
+    <div class="auth-card">
+        <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+        <h2 style="color: var(--primary-dark);">مرحباً بك في رفيق الدراسة</h2>
+        <p style="color: var(--medium-gray); margin-bottom: 1.5rem;">تسجيل الدخول لبدء رحلتك الدراسية</p>
+        <input type="text" id="studentName" class="auth-input" placeholder="الاسم الكامل">
+        <input type="text" id="studentId" class="auth-input" placeholder="الرقم الجامعي">
+        <button class="auth-btn" onclick="login()"><i class="fas fa-sign-in-alt"></i> دخول</button>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--medium-gray);">⭐ تجربة تجريبية: أدخل أي بيانات للدخول</p>
+    </div>
+</div>
+
+<!-- شريط المستخدم بعد الدخول -->
+<div id="userBar" style="display: none;" class="user-info-bar">
+    <span><i class="fas fa-user-graduate"></i> <span id="userNameDisplay"></span> | <span id="userIdDisplay"></span></span>
+    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</button>
+</div>
+
+<header>
+    <div class="logo-container">
+        <div class="logo"><i class="fas fa-graduation-cap"></i></div>
+        <div>
+            <h1>رفيق الدراسة</h1>
+            <p class="subtitle">نظام متكامل للمذاكرة والاختبارات والجدولة الذكية - الترم الثاني 2026</p>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <div class="nav-item active" onclick="showSection('dashboard')"><i class="fas fa-home"></i> الرئيسية</div>
+        <div class="nav-item" onclick="showSection('subjects')"><i class="fas fa-book-open"></i> المواد</div>
+        <div class="nav-item" onclick="showSection('schedule')"><i class="fas fa-calendar-alt"></i> جدول المذاكرة</div>
+        <div class="nav-item" onclick="showSection('quizzes')"><i class="fas fa-puzzle-piece"></i> اختبارات تفاعلية</div>
+        <div class="nav-item" onclick="showSection('lectures')"><i class="fas fa-video"></i> المحاضرات</div>
+        <div class="nav-item" onclick="showSection('exams')"><i class="fas fa-file-alt"></i> الامتحانات</div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="search-container" style="max-width:700px; margin:0 auto 2rem;">
+        <i class="fas fa-search search-icon" style="position:absolute; left:1.5rem; top:50%; transform:translateY(-50%); color:var(--medium-gray);"></i>
+        <input type="text" class="search-box" placeholder="ابحث عن محاضرة، مادة، أو ملف..." onkeyup="filterFiles()" id="searchInput" style="width:100%; padding:1rem 3rem 1rem 1.5rem; border-radius:15px; border:2px solid var(--light-gray);">
+    </div>
+    
+    <main>
+        <!-- لوحة التحكم -->
+        <section id="dashboard" class="section active">
+            <h2 style="margin-bottom:2rem; text-align:center; color:var(--primary-dark)">لوحة التحكم الذكية</h2>
+            <div class="dashboard">
+                <div class="card"><div class="card-title"><i class="fas fa-clock"></i><h3>آخر الملفات المضافة</h3></div>
+                    <ul class="file-list" style="list-style:none">
+                        <li class="file-item" style="display:flex; justify-content:space-between; padding:1rem; background:var(--light-gray); margin-bottom:0.5rem; border-radius:10px;"><span><i class="fas fa-file-pdf"></i> محاضرة 4 - التأمينات</span><button class="download-btn" onclick="downloadFile('محاضرة4.pdf')">تحميل</button></li>
+                        <li class="file-item" style="display:flex; justify-content:space-between; padding:1rem; background:var(--light-gray); margin-bottom:0.5rem; border-radius:10px;"><span><i class="fas fa-file-pdf"></i> محاضرة 3 - قواعد البيانات</span><button class="download-btn" onclick="downloadFile('lec3.pdf')">تحميل</button></li>
+                    </ul>
+                </div>
+                <div class="card"><div class="card-title"><i class="fas fa-chart-line"></i><h3>إحصائياتي</h3></div>
+                    <div><div class="progress-info"><span>المواد المكتملة</span><span>2/6</span></div><div class="progress-bar"><div class="progress" style="width:33%"></div></div></div>
+                    <div><div class="progress-info"><span>الاختبارات المنجزة</span><span>0/5</span></div><div class="progress-bar"><div class="progress" style="width:0%"></div></div></div>
+                </div>
+                <div class="card"><div class="card-title"><i class="fas fa-bell"></i><h3>إشعارات فورية</h3></div>
+                    <ul id="notificationList" style="list-style:none"><li style="color:var(--success);">📢 تم إضافة محاضرة جديدة في تحليل النظم!</li><li style="color:var(--warning);">⏰ موعد اختبار تفاعلي غداً</li></ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- المواد الدراسية -->
+        <section id="subjects" class="section" style="display:none">
+            <h2 style="margin-bottom:2rem; text-align:center">المواد الدراسية - 2026</h2>
+            <div class="subjects-grid">
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#fa709a,#fee140)"><i class="fas fa-user-tie" style="font-size:2rem"></i><h3>إدارة الموارد البشرية</h3><p>إسلام سمير</p></div></div>
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"><i class="fas fa-laptop-code" style="font-size:2rem"></i><h3>تطبيقات برمجة الحاسب</h3><p>مجدي عبد الغني</p></div></div>
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fas fa-chart-pie"></i><h3>تحليل وتصميم نظم المعلومات</h3><p>أشرف هيكل</p></div></div>
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#f44336,#ff9800)"><i class="fas fa-shield-virus"></i><h3>إدارة المخاطر وأمن المعلومات</h3><p>زياد خليل</p></div></div>
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#26c6da,#0097a7)"><i class="fas fa-microchip"></i><h3>البنية التحتية لتكنولوجيا المعلومات</h3><p>شهيره سعد</p></div></div>
+                <div class="subject-card"><div class="subject-header" style="background:linear-gradient(135deg,#00c853,#b2ff59)"><i class="fas fa-chart-line"></i><h3>ريادة الأعمال والمشروعات الصغيرة</h3><p>محمد عبد الوحيد</p></div></div>
+            </div>
+        </section>
+        
+        <!-- جدول مذاكرة شخصي ذكي -->
+        <section id="schedule" class="section" style="display:none">
+            <h2 style="margin-bottom:2rem; text-align:center">📅 جدول المذاكرة الذكي - مخصص لك</h2>
+            <div class="study-schedule">
+                <h3><i class="fas fa-brain"></i> خطة اليوم (الأحد 3 مايو 2026)</h3>
+                <div id="scheduleList"></div>
+                <button class="download-btn" style="margin-top:1rem; background:white; color:var(--primary);" onclick="generateNewSchedule()"><i class="fas fa-sync-alt"></i> إنشاء جدول جديد</button>
+            </div>
+        </section>
+        
+        <!-- اختبارات تفاعلية -->
+        <section id="quizzes" class="section" style="display:none">
+            <h2 style="margin-bottom:2rem; text-align:center">🎯 اختبارات تفاعلية لقياس الفهم</h2>
+            <div class="quiz-card" id="quizContainer">
+                <div class="question" id="quizQuestion"></div>
+                <div id="quizOptions"></div>
+                <button class="download-btn" id="nextQuizBtn" onclick="nextQuestion()" style="display:none; margin-top:1rem;">السؤال التالي</button>
+                <div id="quizResult" class="quiz-result"></div>
+                <div id="quizScore" style="margin-top:1rem; font-weight:bold;"></div>
+            </div>
+        </section>
+        
+        <!-- المحاضرات -->
+        <section id="lectures" class="section" style="display:none"><h2 style="text-align:center">المحاضرات</h2><div class="dashboard"><div class="card"><h3>قائمة المحاضرات</h3><p>جميع المواد - قريباً سيتم رفع المحاضرات</p></div></div></section>
+        <section id="exams" class="section" style="display:none"><h2 style="text-align:center">الامتحانات</h2><div class="card"><h3>امتحانات سابقة</h3><button class="download-btn">تحميل نماذج</button></div></section>
+    </main>
+</div>
+
+<footer>
+    <p class="copyright">رفيق الدراسة © 2026 - النظام المتكامل للتعليم الذكي</p>
+</footer>
+
+<div class="notification" id="notification"><div id="notification-message"></div><button onclick="hideNotification()" style="background:none;border:none;color:white;position:absolute;top:0.5rem;left:0.5rem;">✖</button></div>
+<div class="live-notification" id="liveNotification"><span id="liveMsg"></span></div>
+
+<script>
+    let currentUser = null;
+    let currentQuiz = 0;
+    let quizScore = 0;
+    let userAnswers = [];
+    
+    const quizzes = [
+        { subject: "إدارة الموارد البشرية", question: "ما هو مفهوم إدارة الموارد البشرية؟", options: ["إدارة المال", "إدارة الأفراد وتطويرهم", "إدارة التقنيات", "إدارة الإنتاج"], correct: 1 },
+        { subject: "قواعد البيانات", question: "ما هي لغة الاستعلام المهيكلة المستخدمة في قواعد البيانات؟", options: ["Java", "Python", "SQL", "C++"], correct: 2 },
+        { subject: "ريادة الأعمال", question: "ما هي أول خطوة لبدء مشروع ناجح؟", options: ["التسويق", "دراسة الجدوى", "التمويل", "التوظيف"], correct: 1 }
+    ];
+    
+    function login() {
+        const name = document.getElementById('studentName').value;
+        const id = document.getElementById('studentId').value;
+        if(name && id) {
+            currentUser = { name, id };
+            document.getElementById('userNameDisplay').innerText = name;
+            document.getElementById('userIdDisplay').innerText = id;
+            document.getElementById('userBar').style.display = 'flex';
+            document.getElementById('authOverlay').style.display = 'none';
+            showNotification(`مرحباً ${name}! تم تسجيل الدخول بنجاح`);
+            showLiveNotification(`🎉 اهلاً بك ${name} في رفيق الدراسة! تم إضافة محتوى جديد لك اليوم.`);
+            generateDailySchedule();
+            startQuiz();
+        }
+    }
+    
+    function logout() {
+        currentUser = null;
+        document.getElementById('userBar').style.display = 'none';
+        document.getElementById('authOverlay').style.display = 'flex';
+        showNotification('تم تسجيل الخروج');
+    }
+    
+    // جدول مذاكرة ذكي
+    function generateDailySchedule() {
+        const subjects = ["إدارة الموارد البشرية", "تطبيقات برمجة الحاسب", "تحليل وتصميم نظم المعلومات", "إدارة المخاطر", "ريادة الأعمال"];
+        const times = ["09:00 - 11:00", "11:30 - 13:30", "14:00 - 16:00", "16:30 - 18:30", "19:00 - 21:00"];
+        let scheduleHtml = '';
+        for(let i = 0; i < 3; i++) {
+            const randomSub = subjects[Math.floor(Math.random() * subjects.length)];
+            scheduleHtml += `<div class="schedule-item"><span><i class="fas fa-book"></i> ${randomSub}</span><span><i class="fas fa-clock"></i> ${times[i]}</span><span><i class="fas fa-check-circle"></i> مدة: ساعتان</span></div>`;
+        }
+        scheduleHtml += `<div class="schedule-item" style="background:rgba(255,255,255,0.3);"><span><i class="fas fa-coffee"></i> استراحة</span><span>13:30 - 14:00</span><span>🍵 راحة</span></div>`;
+        document.getElementById('scheduleList').innerHTML = scheduleHtml;
+    }
+    
+    function generateNewSchedule() {
+        generateDailySchedule();
+        showLiveNotification("📌 تم تحديث جدول المذاكرة الخاص بك بناءً على أدائك!");
+        showNotification("تم إنشاء جدول مذاكرة جديد يناسب احتياجاتك");
+    }
+    
+    // اختبارات تفاعلية
+    function startQuiz() {
+        currentQuiz = 0;
+        quizScore = 0;
+        userAnswers = [];
+        loadQuizQuestion();
+    }
+    
+    function loadQuizQuestion() {
+        if(currentQuiz >= quizzes.length) {
+            document.getElementById('quizQuestion').innerHTML = `🎉 انتهى الاختبار! نتيجتك: ${quizScore}/${quizzes.length}`;
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('nextQuizBtn').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('quizResult').innerHTML = `<div style="background:var(--success); color:white; padding:1rem; border-radius:10px;">🌟 تهانينا! حصلت على ${quizScore} من ${quizzes.length} 💯</div>`;
+            document.getElementById('quizScore').innerHTML = `الدرجة النهائية: ${quizScore}/${quizzes.length}`;
+            showLiveNotification(`📊 أتممت الاختبار التفاعلي! نتيجتك ${quizScore}/${quizzes.length} - استمر في التميز!`);
+            return;
+        }
+        const q = quizzes[currentQuiz];
+        document.getElementById('quizQuestion').innerHTML = `<i class="fas fa-question-circle"></i> ${q.question} (${q.subject})`;
+        let optionsHtml = '';
+        q.options.forEach((opt, idx) => {
+            optionsHtml += `<div class="option" onclick="answerQuestion(${idx})">${opt}</div>`;
+        });
+        document.getElementById('quizOptions').innerHTML = optionsHtml;
+        document.getElementById('nextQuizBtn').style.display = 'none';
+        document.getElementById('quizResult').style.display = 'none';
+    }
+    
+    function answerQuestion(selected) {
+        const isCorrect = (selected === quizzes[currentQuiz].correct);
+        if(isCorrect) {
+            quizScore++;
+            showLiveNotification("✅ إجابة صحيحة! أحسنت!");
+        } else {
+            showLiveNotification("❌ إجابة خاطئة، الإجابة الصحيحة هي: " + quizzes[currentQuiz].options[quizzes[currentQuiz].correct]);
+        }
+        userAnswers.push({ correct: isCorrect });
+        document.getElementById('quizResult').style.display = 'block';
+        document.getElementById('quizResult').innerHTML = `<div style="background:${isCorrect ? 'var(--success)' : 'var(--danger)'}; color:white; padding:1rem; border-radius:10px;">${isCorrect ? '✔️ إجابة صحيحة! 🎉' : '❌ إجابة خاطئة! حاول مرة أخرى في السؤال القادم'}</div>`;
+        document.getElementById('nextQuizBtn').style.display = 'block';
+        document.getElementById('quizOptions').innerHTML = '';
+    }
+    
+    function nextQuestion() {
+        currentQuiz++;
+        loadQuizQuestion();
+    }
+    
+    // إشعارات فورية وتحسينات
+    function showLiveNotification(msg) {
+        const notif = document.getElementById('liveNotification');
+        document.getElementById('liveMsg').innerHTML = msg;
+        notif.style.display = 'block';
+        setTimeout(() => { notif.style.display = 'none'; }, 4000);
+    }
+    
+    function showNotification(msg) {
+        const n = document.getElementById('notification');
+        document.getElementById('notification-message').innerHTML = msg;
+        n.style.display = 'block';
+        setTimeout(() => n.style.display = 'none', 3000);
+    }
+    
+    function hideNotification() { document.getElementById('notification').style.display = 'none'; }
+    
+    function downloadFile(f) { showNotification(`جاري تحميل ${f}`); setTimeout(() => showLiveNotification(`📥 تم تحميل ${f} بنجاح`), 1000); }
+    
+    function filterFiles() {
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.file-item').forEach(el => {
+            el.style.display = el.textContent.toLowerCase().includes(term) ? 'flex' : 'none';
+        });
+    }
+    
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        event.target.closest('.nav-item').classList.add('active');
+        if(sectionId === 'schedule' && currentUser) generateDailySchedule();
+        if(sectionId === 'quizzes') startQuiz();
+    }
+    
+    // محاكاة إشعار فوري عند إضافة محتوى جديد
+    setInterval(() => {
+        if(currentUser) {
+            const messages = ["📢 تم إضافة محاضرة جديدة في تحليل النظم!", "📝 ملخص جديد لمادة ريادة الأعمال متاح للتحميل", "🎯 اختبار تفاعلي جديد في إدارة المخاطر", "📅 تم تحديث جدول المذاكرة بناءً على تقدمك"];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            showLiveNotification(randomMsg);
+        }
+    }, 30000);
+    
+    window.onload = () => {
+        if(!currentUser) document.getElementById('authOverlay').style.display = 'flex';
+        else document.getElementById('authOverlay').style.display = 'none';
+    };
+</script>
+</body>
+</html>
