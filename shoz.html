@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحذية الفخامة - أكبر تشكيلة أحذية فاخرة في مصر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        :root {
+            --primary: #111111; /* أسود ملكي */
+            --secondary: #D4AF37; /* ذهبي فاخر */
+            --accent: #AA7C11; /* ذهبي داكن */
+            --light: #F9F6EE; /* أوف وايت ناعم */
+            --dark: #1A1A1A; 
+            --success: #27AE60;
+            --warning: #E67E22;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* الشريط العلوي */
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-info span {
+            margin-left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+        }
+
+        .hot-offer {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* الهيدر الرئيسي */
+        .main-header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--secondary);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            border: 1px solid var(--secondary);
+        }
+
+        .logo-text span:first-child {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 900;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .logo-text span:last-child {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* البحث */
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box {
+            display: flex;
+            background: #F0F0F0;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--secondary);
+            background: white;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-box button {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--dark);
+        }
+
+        /* أدوات المستخدم */
+        .user-tools {
+            display: flex;
+            gap: 20px;
+        }
+
+        .user-tools-btn {
+            background: transparent;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            gap: 4px;
+        }
+
+        .user-tools-btn i {
+            font-size: 1.3rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: var(--secondary);
+            color: var(--primary);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* أزرار الفئات السريعة للتنقل والفلترة */
+        .filter-nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+
+        /* سيكشن المنتجات */
+        .main-products-section {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 260px;
+            background: #fdfdfd;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(17, 17, 17, 0.85);
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .prod-cat {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .prod-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            height: 27px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .prod-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .new-price {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+
+        .discount-label {
+            background: #EBF7EE;
+            color: var(--success);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        /* المودال الشباك المنبثق للدفع والشراء */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalOpen 0.3s ease;
+        }
+
+        @keyframes modalOpen {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 { margin: 0; font-size: 1.3rem; }
+        .close-modal { background: transparent; border: none; color: white; font-size: 1.4rem; cursor: pointer; }
+
+        .modal-body { padding: 25px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 10px 15px; border: 1px solid #ccc; border-radius: 8px; outline: none; }
+        .form-group input:focus { border-color: var(--secondary); }
+
+        .submit-btn { width: 100%; background: var(--success); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+
+        /* الفوتر */
+        footer {
+            background: var(--primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-section p { line-height: 1.8; font-size: 0.95rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #bbb; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--secondary); }
+
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icons a { width: 38px; height: 38px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; border: 1px solid #333; }
+        .social-icons a:hover { background: var(--secondary); color: var(--primary); }
+
+        .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #222; font-size: 0.9rem; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact-info">
+                <span><i class="fa-solid fa-phone"></i> خدمة العملاء: 01012345678</span>
+                <span><i class="fa-solid fa-envelope"></i> info@elkot-lux.com</span>
+            </div>
+            <div class="hot-offer">شحن مجاني لفترة محدودة على الطلبات أعلى من 1000 ج.م!</div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-crown"></i></div>
+                <div class="logo-text">
+                    <span>الفخامة</span>
+                    <span>أرقى عالم للأحذية</span>
+                </div>
+            </a>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="ابحث عن كوتشي، حذاء رجالي، حذاء أطفالي...">
+                    <button onclick="searchProducts()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="user-tools">
+                <button class="user-tools-btn" onclick="openCartModal()">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>السلة</span>
+                    <div class="cart-count" id="cartCount">0</div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="filter-nav">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">كل الأحذية</button>
+        <button class="filter-btn" onclick="filterCategory('رجالي', this)">رجالي</button>
+        <button class="filter-btn" onclick="filterCategory('حريمي', this)">حريمي</button>
+        <button class="filter-btn" onclick="filterCategory('شبابي', this)">شبابي</button>
+        <button class="filter-btn" onclick="filterCategory('أطفالي', this)">أطفالي</button>
+        <button class="filter-btn" onclick="filterCategory('شباشب', this)">شباشب وصنادل</button>
+        <button class="filter-btn" onclick="filterCategory('كوتشيات', this)">كوتشيات رياضية</button>
+    </div>
+
+    <main class="main-products-section">
+        <h2 class="section-title" id="sectionTitle">أحدث الموديلات العالمية</h2>
+        <div class="products-grid" id="productsGrid">
+            </div>
+    </main>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProductTitle">طلب حذاء الفخامة</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+                    <div class="form-group">
+                        <label>المقاس المطلوب:</label>
+                        <select required>
+                            <option value="">اختر المقاس</option>
+                            <option>37</option><option>38</option><option>39</option>
+                            <option>40</option><option>41</option><option>42</option>
+                            <option>43</option><option>44</option><option>45</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الاسم بالكامل:</label>
+                        <input type="text" placeholder="الاسم ثلاثي" required>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف للاتصال وتأكيد الشحن:</label>
+                        <input type="tel" placeholder="رقم الموبايل" required>
+                    </div>
+                    <div class="form-group">
+                        <label>العنوان بالتفصيل المحافظة والمركز:</label>
+                        <input type="text" placeholder="مثال: الشرقية - بلبيس - شبرا النخلة" required>
+                    </div>
+                    <button type="submit" class="submit-btn">تأكيد حجز الأوردر فوراً</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>متجر أحذية الفخامة</h3>
+                <p>وجهتك الأولى في جمهورية مصر العربية للحصول على أرقى الموديلات المستوردة والمحلية بجودة أصلية 100% وأسعار تنافسية تناسب الجميع.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="filterCategory('رجالي')">أحذية رجالي فاخرة</a></li>
+                    <li><a href="#" onclick="filterCategory('كوتشيات')">أحدث الكوتشيات الرياضية</a></li>
+                    <li><a href="#" onclick="filterCategory('حريمي')">تسكيلة الموديلات الحريمي</a></li>
+                    <li><a href="#" onclick="filterCategory('أطفالي')">أحذية الأطفال المتينة</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>الدعم والتواصل المباشر</h3>
+                <p>متاحون لرد على استفساراتكم على مدار 24 ساعة عبر الهاتف أو البريد الإلكتروني.</p>
+                <p style="margin-top: 10px; color: var(--secondary);"><i class="fa-solid fa-location-dot"></i> فرعنا الرئيسي: مصر - الشرقية</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 جميع الحقوق محفوظة لـ متجر أحذية الفخامة - تطوير وإدارة أحمد القط.
+        </div>
+    </footer>
+
+    <script>
+        // مصفوفة الفئات والأسماء لإنتاج الـ 70 منتج منوعين بدقة عالية
+        const categories = ['رجالي', 'حريمي', 'شبابي', 'أطفالي', 'شباشب', 'كوتشيات'];
+        const types = {
+            'رجالي': ['حذاء كلاسيك جلد طبيعي', 'هاف بوت ملكي', 'لوفر كاجوال فاخر', 'حذاء رسمي للمناسبات'],
+            'حريمي': ['شوز سواريه فخم', 'حذاء فلات مريح', 'أوزيس عالي شيك', 'كوتشي كعب مخفي'],
+            'شبابي': ['سنيكرز عصري تريند', 'كوتشي ستايل خروجات', 'حذاء جينز شبابي', 'رانينج شوز كول'],
+            'أطفالي': ['كوتشي أطفال طبي مريح', 'شوز مناسبات للمدارس', 'صندل أطفالي مرن'],
+            'شباشب': ['سليبر جلدي فاخر', 'شبشب بحر مستورد', 'صندل خروج طبي مريح'],
+            'كوتشيات': ['كوتشي جري واير فورس', 'حذاء كرة قدم احترافي', 'كوتشي جيم ممتص للصدمات']
+        };
+
+        // تجميع الـ 70 منتج عشوائي بجودة ممتازة لتغطية كل الاحتياجات
+        const productsData = [];
+        let idCounter = 1;
+
+        // صور Unsplash منتقاة بدقة عالية للأحذية بمختلف الفئات
+        const shoeImages = [
+            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80',
+            'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80',
+            'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500&q=80',
+            'https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=500&q=80',
+            'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&q=80',
+            'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&q=80',
+            'https://images.unsplash.com/photo-1539185441755-769473a23570?w=500&q=80'
+        ];
+
+        for (let i = 1; i <= 72; i++) {
+            const currentCat = categories[i % categories.length];
+            const catTypes = types[currentCat];
+            const currentType = catTypes[Math.floor(Math.random() * catTypes.length)];
+            
+            const oldPrice = Math.floor(Math.random() * (1200 - 600) + 600);
+            const discount = Math.floor(Math.random() * (40 - 15) + 15);
+            const currentPrice = Math.floor(oldPrice * (1 - discount / 100));
+
+            productsData.push({
+                id: idCounter++,
+                title: `${currentType} فئة ${i}`,
+                category: currentCat,
+                desc: 'تصميم أوروبي مريح للقدمين مع خامات مقاومة للرطوبة والضغط الطويل.',
+                oldPrice: oldPrice,
+                price: currentPrice,
+                discount: discount,
+                image: shoeImages[i % shoeImages.length]
+            });
+        }
+
+        let cartCount = 0;
+
+        // دالة رندر وعرض المنتجات في الشبكة
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            if(products.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; font-weight: bold; color: #999;">عذراً، لم نجد أحذية تطابق بحثك حالياً!</div>`;
+                return;
+            }
+
+            products.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('data-category', prod.category);
+                card.innerHTML = `
+                    <div class="product-img-wrapper">
+                        <img src="${prod.image}" alt="${prod.title}" loading="lazy">
+                        <span class="product-tag">${prod.category}</span>
+                    </div>
+                    <div class="product-details">
+                        <span class="prod-cat">تشكيلة صيف 2026</span>
+                        <h3 class="prod-title">${prod.title}</h3>
+                        <p class="prod-desc">${prod.desc}</p>
+                        <div class="price-box">
+                            <span class="new-price">${prod.price} ج.م</span>
+                            <span class="old-price">${prod.oldPrice} ج.م</span>
+                            <span class="discount-label">خصم ${prod.discount}%</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="openOrderModal('${prod.title}')">
+                            <i class="fa-solid fa-cart-plus"></i> اطلب الآن فوري
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // تشغيل الرندر الأولي فور فتح الصفحة
+        displayProducts(productsData);
+
+        // فلترة المنتجات حسب الضغط على التبويبات
+        function filterCategory(cat, btnElement) {
+            if(btnElement) {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            }
+            
+            if (cat === 'all') {
+                document.getElementById('sectionTitle').innerText = 'أحدث الموديلات العالمية لجميع الفئات';
+                displayProducts(productsData);
+            } else {
+                document.getElementById('sectionTitle').innerText = `أرقى موديلات فئة الـ ${cat}`;
+                const filtered = productsData.filter(p => p.category === cat);
+                displayProducts(filtered);
+            }
+        }
+
+        // تشغيل محرك البحث العلوي بشكل فوري وفعال
+        function searchProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase().trim();
+            const filtered = productsData.filter(p => p.title.toLowerCase().includes(term) || p.category.toLowerCase().includes(term));
+            document.getElementById('sectionTitle').innerText = `نتائج البحث عن: ${term}`;
+            displayProducts(filtered);
+        }
+
+        // البحث التلقائي أثناء الكتابة في خانة البحث
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            searchProducts();
+        });
+
+        // المودال وإتمام الشراء والطلب
+        function openOrderModal(productName) {
+            document.getElementById('modalProductTitle').innerText = `حجز طلب: ${productName}`;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        // تحديث عداد الأكياس عند الطلب
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+            alert('تم تسجيل طلبك الفاخر بنجاح يا فندم! سيقوم ممثل الشحن بالتواصل معك على رقمك لتأكيد التوصيل خلال ساعات.');
+            cartCount++;
+            document.getElementById('cartCount').innerText = cartCount;
+            closeModal();
+            document.getElementById('orderForm').reset();
+        }
+
+        function openCartModal() {
+            alert(`سلتك تحتوي حالياً على ${cartCount} طلبات قيد المراجعة الفورية.`);
+        }
+
+        // إغلاق المودال عند الضغط في أي مكان خارجي
+        window.onclick = function(event) {
+            const modal = document.getElementById('checkoutModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
